@@ -46,6 +46,10 @@ class CustomCard extends StatelessWidget {
                   title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               Container(

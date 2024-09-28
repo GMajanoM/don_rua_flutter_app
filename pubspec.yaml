@@ -1,7 +1,7 @@
 name: donrua_app
 description: "Aplicación para la automatización de los procesos de intenciones y
   Donaciones (versión móvil)."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
@@ -14,6 +14,7 @@ dependencies:
   flutter_riverpod: ^2.5.1
   go_router: ^14.2.8
   google_fonts: ^6.2.1
+  icons_plus: ^5.0.0
 
 dev_dependencies:
   flutter_lints: ^4.0.0
