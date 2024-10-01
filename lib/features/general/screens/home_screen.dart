@@ -117,7 +117,7 @@ class HomeScreen extends StatelessWidget {
                           information:
                               'Et incididunt non ut deserunt tempor. In do commodo Lorem eiusmod cupidatat nisi adipisicing est do aliqua labore laboris aliqua. Excepteur cupidatat Lorem deserunt sint. Qui sint et qui quis nisi quis sunt consectetur.',
                           coversWidth: true),
-                      const SizedBox(height: 15),
+                      const SizedBox(height: 20),
                     ],
                   ),
                   const Row(
@@ -135,7 +135,19 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 20),
                   const Divider(),
+                  const Text(
+                    'Noticias recientes',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const RecentNewsCard(
+                    title: 'Titulo de la noticia',
+                    description:
+                        'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
+                    imageUrl: 'assets/img/church-inside.png',
+                    date: '25/05/2022',
+                  ),
                 ],
               ),
             ),
