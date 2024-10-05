@@ -16,83 +16,59 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: getAppbar(size),
       drawer: const CustomDrawer(
-        index: drawerIndex,
+        selectedIndex: drawerIndex,
         isLoggedIn: false,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(16),
-                  bottomRight: Radius.circular(16)),
-              child: Stack(
-                children: [
-                  Container(
-                    width: size.width,
-                    constraints: BoxConstraints(maxHeight: size.height * 0.3),
-                    child: Image.asset(
-                      'assets/img/church.jpeg',
-                      fit: BoxFit.fitWidth,
-                    ),
+            BigImage(
+              size: size,
+              imageUrl: 'assets/img/church.jpeg',
+              alignment: CrossAxisAlignment.start,
+              extras: [
+                const Text(
+                  'Texto de Apoyo',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
                   ),
-                  Container(
-                    constraints: BoxConstraints(maxHeight: size.height * 0.3),
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.5),
-                    ),
+                ),
+                const Text(
+                  'Título de Ejemplo',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Descripción de la iglesia y visión que se tiene. Reflexiones, practicas, enseñanzas, en adultos y jóvenes.',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                  ),
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 16),
+                SizedBox(
+                  width: size.width * 0.5,
+                  child: FilledButton(
+                    onPressed: () {},
+                    child: const Row(
                       children: [
-                        const Text(
-                          'Texto de Apoyo',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                          ),
+                        Icon(Icons.calendar_month_rounded),
+                        SizedBox(width: 8),
+                        Text(
+                          'Observar eventos',
                         ),
-                        const Text(
-                          'Título de Ejemplo',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        const Text(
-                          'Descripción de la iglesia y visión que se tiene. Reflexiones, practicas, enseñanzas, en adultos y jóvenes.',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                          ),
-                          maxLines: 4,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        const SizedBox(height: 16),
-                        SizedBox(
-                          width: size.width * 0.5,
-                          child: FilledButton(
-                            onPressed: () {},
-                            child: const Row(
-                              children: [
-                                Icon(Icons.calendar_month_rounded),
-                                SizedBox(width: 8),
-                                Text(
-                                  'Observar eventos',
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
                       ],
                     ),
                   ),
-                ],
-              ),
+                )
+              ],
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),

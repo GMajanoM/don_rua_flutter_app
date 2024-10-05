@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 enum AllowedRoles { secretary, priest, user }
 
 class DrawerItem {
   final IconData icon;
   final String title;
+  final String url;
   final List<AllowedRoles> allowedRoles;
   final bool isSpecial;
 
   DrawerItem({
     required this.icon,
     required this.title,
+    required this.url,
     required this.allowedRoles,
     this.isSpecial = false,
   });
 }
 
 class CustomDrawer extends StatelessWidget {
-  final int index;
+  final int selectedIndex;
   final bool isLoggedIn;
 
   const CustomDrawer(
-      {super.key, required this.index, required this.isLoggedIn});
+      {super.key, required this.selectedIndex, required this.isLoggedIn});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +37,7 @@ class CustomDrawer extends StatelessWidget {
           AllowedRoles.priest,
           AllowedRoles.user,
         ],
+        url: '/home',
       ),
       DrawerItem(
         icon: Icons.church_rounded,
@@ -43,6 +47,7 @@ class CustomDrawer extends StatelessWidget {
           AllowedRoles.priest,
           AllowedRoles.user,
         ],
+        url: '/services',
       ),
       DrawerItem(
         icon: Icons.group_add_rounded,
@@ -52,6 +57,7 @@ class CustomDrawer extends StatelessWidget {
           AllowedRoles.priest,
           AllowedRoles.user,
         ],
+        url: '/about-us',
       ),
       DrawerItem(
         icon: Icons.schedule_rounded,
@@ -61,6 +67,7 @@ class CustomDrawer extends StatelessWidget {
           AllowedRoles.priest,
           AllowedRoles.user,
         ],
+        url: '/schedules',
       ),
     ];
 
@@ -74,6 +81,7 @@ class CustomDrawer extends StatelessWidget {
             AllowedRoles.priest,
             AllowedRoles.user,
           ],
+          url: '/my-account',
         ),
       !isLoggedIn
           ? DrawerItem(
@@ -84,6 +92,7 @@ class CustomDrawer extends StatelessWidget {
                 AllowedRoles.priest,
                 AllowedRoles.user,
               ],
+              url: '/login',
             )
           : DrawerItem(
               icon: Icons.logout_rounded,
@@ -93,6 +102,7 @@ class CustomDrawer extends StatelessWidget {
                 AllowedRoles.priest,
                 AllowedRoles.user,
               ],
+              url: '/logout',
             ),
       DrawerItem(
         icon: Icons.monetization_on_rounded,
@@ -102,6 +112,7 @@ class CustomDrawer extends StatelessWidget {
           AllowedRoles.priest,
           AllowedRoles.user,
         ],
+        url: '/donations',
         isSpecial: true,
       ),
     ];
@@ -109,7 +120,7 @@ class CustomDrawer extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return NavigationDrawer(
-      selectedIndex: index,
+      selectedIndex: selectedIndex,
       children: [
         SizedBox(
           height: size.height * 0.1,
@@ -127,10 +138,13 @@ class CustomDrawer extends StatelessWidget {
                   final item = generalDrawerItems[index];
 
                   return DrawerButton(
-                    onTap: () {},
+                    onTap: () {
+                      context.go(item.url);
+                    },
                     icon: item.icon,
                     title: item.title,
                     isSpecial: item.isSpecial,
+                    isSelected: index == selectedIndex,
                   );
                 },
               ),
@@ -142,10 +156,12 @@ class CustomDrawer extends StatelessWidget {
                   final item = sessionDrawerItems[index];
 
                   return DrawerButton(
-                      onTap: () {},
-                      icon: item.icon,
-                      title: item.title,
-                      isSpecial: item.isSpecial);
+                    onTap: () {},
+                    icon: item.icon,
+                    title: item.title,
+                    isSpecial: item.isSpecial,
+                    isSelected: false,
+                  );
                 },
               ),
             ],
@@ -160,14 +176,17 @@ class DrawerButton extends StatelessWidget {
   final void Function() onTap;
   final IconData icon;
   final String title;
+  final bool isSelected;
   final bool isSpecial;
 
-  const DrawerButton(
-      {super.key,
-      required this.onTap,
-      required this.icon,
-      required this.title,
-      required this.isSpecial});
+  const DrawerButton({
+    super.key,
+    required this.onTap,
+    required this.icon,
+    required this.title,
+    required this.isSpecial,
+    required this.isSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +199,11 @@ class DrawerButton extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: isSpecial ? colors.secondary : null,
+            color: isSpecial
+                ? colors.secondary
+                : isSelected
+                    ? colors.tertiary
+                    : null,
             borderRadius: BorderRadius.circular(12),
           ),
           child: Row(
