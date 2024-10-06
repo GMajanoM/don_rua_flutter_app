@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:icons_plus/icons_plus.dart';
 
 import '../../shared/shared.dart';
 
@@ -63,6 +62,7 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(width: 8),
                         Text(
                           'Observar eventos',
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ],
                     ),
@@ -76,8 +76,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   const SizedBox(height: 16),
                   ModuleCards(size: size),
-                  const SizedBox(height: 16),
-                  const Divider(),
+                  const SizedBox(height: 25),
                   Column(
                     children: [
                       const Text(
@@ -93,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                           information:
                               'Et incididunt non ut deserunt tempor. In do commodo Lorem eiusmod cupidatat nisi adipisicing est do aliqua labore laboris aliqua. Excepteur cupidatat Lorem deserunt sint. Qui sint et qui quis nisi quis sunt consectetur.',
                           coversWidth: true),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 25),
                     ],
                   ),
                   const Row(
@@ -106,29 +105,54 @@ class HomeScreen extends StatelessWidget {
                         imagePath: 'assets/img/ave-maria.png',
                         status: 'Activa',
                       ),
-                      ConnectionsCard(
-                        phoneNumber: '2526 9700',
-                      ),
                     ],
                   ),
-                  const SizedBox(height: 20),
-                  const Divider(),
+                  const SizedBox(height: 25),
                   const Text(
                     'Noticias recientes',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  const RecentNewsCard(
-                    title: 'Titulo de la noticia',
-                    description:
-                        'Lorem ipsum dolor sit amet consectetur adipiscing elit.',
-                    imageUrl: 'assets/img/church-inside.png',
-                    date: '25/05/2022',
-                  ),
+                  const SizedBox(height: 10),
+                  ModuleNews(size: size),
+                  const SizedBox(height: 25),
+                  DonationSection(size: size)
                 ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ModuleNews extends StatelessWidget {
+  const ModuleNews({
+    super.key,
+    required this.size,
+  });
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: size.height * 0.42,
+      width: size.width * 0.95,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: const [
+          RecentNewsCard(
+              title: 'Helo',
+              description: "Holaaaaaaaaaaaaaaaaaaaaaa",
+              imageUrl: 'assets/img/church-inside.png',
+              date: '25/05/2222'),
+          RecentNewsCard(
+              title: 'Helo',
+              description: "Holaaaaaaaaaaaaaaaaaaaaaa",
+              imageUrl: 'assets/img/church-inside.png',
+              date: '25/05/2222'),
+        ],
       ),
     );
   }
@@ -190,7 +214,7 @@ class ActivityCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      padding: const EdgeInsets.all(25),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: Colors.white,
@@ -202,7 +226,7 @@ class ActivityCard extends StatelessWidget {
           ),
         ],
       ),
-      width: size.width * 0.5,
+      width: size.width * 0.95,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -245,79 +269,6 @@ class ActivityCard extends StatelessWidget {
               fontSize: 12,
               color: Colors.grey,
             ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class ConnectionsCard extends StatelessWidget {
-  final String phoneNumber;
-
-  const ConnectionsCard({
-    super.key,
-    required this.phoneNumber,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            blurRadius: 5,
-            spreadRadius: 1,
-          ),
-        ],
-      ),
-      width: size.width * 0.4,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Text(
-            'Conexiones',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 10),
-          Wrap(
-            spacing: 20,
-            runSpacing: 10,
-            alignment: WrapAlignment.center,
-            children: [
-              IconButton(
-                icon: const Icon(Bootstrap.whatsapp, color: Colors.green),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: const Icon(Bootstrap.facebook, color: Colors.blue),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: const Icon(Bootstrap.instagram, color: Colors.pink),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: const Icon(Bootstrap.envelope, color: Colors.orange),
-                onPressed: () {},
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.phone, color: Colors.orange),
-              const SizedBox(width: 8),
-              Text(phoneNumber),
-            ],
           ),
         ],
       ),

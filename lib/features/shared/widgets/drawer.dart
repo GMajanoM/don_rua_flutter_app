@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 enum AllowedRoles { secretary, priest, user }
 
@@ -164,10 +165,78 @@ class CustomDrawer extends StatelessWidget {
                   );
                 },
               ),
+              const SizedBox(height: 16),
+              const ConnectionsCard(phoneNumber: '2526 9700'),
             ],
           ),
         ),
       ],
+    );
+  }
+}
+
+class ConnectionsCard extends StatelessWidget {
+  final String phoneNumber;
+
+  const ConnectionsCard({
+    super.key,
+    required this.phoneNumber,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: Colors.white,
+      ),
+      width: size.width * 1,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Text(
+            'Conexiones',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            alignment: WrapAlignment.spaceBetween,
+            children: [
+              IconButton(
+                icon: const Icon(Bootstrap.whatsapp, color: Colors.green),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: const Icon(Bootstrap.facebook, color: Colors.blue),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: const Icon(Bootstrap.instagram, color: Colors.pink),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: const Icon(Bootstrap.envelope, color: Colors.orange),
+                onPressed: () {},
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.phone, color: Colors.orange),
+              const SizedBox(width: 8),
+              Text(phoneNumber),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
