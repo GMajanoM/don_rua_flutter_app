@@ -19,7 +19,7 @@ class RecentNewsCard extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+      margin: const EdgeInsets.only(right: 8),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -39,12 +39,12 @@ class RecentNewsCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(
               imageUrl,
-              width: size.width * 0.9,
+              width: size.width * 1,
               height: size.height * 0.25,
               fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 15),
           Text(
             title,
             style: const TextStyle(
@@ -59,34 +59,18 @@ class RecentNewsCard extends StatelessWidget {
               fontSize: 14,
               color: Colors.grey,
             ),
-            maxLines: 3,
+            maxLines: 10,
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 8),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
                   const Icon(Icons.access_time_outlined, color: Colors.pink),
-                  const SizedBox(width: 4),
+                  const SizedBox(width: 5),
                   Text(date),
                 ],
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: const Row(
-                  children: [
-                    Text(
-                      'Continuar',
-                      style: TextStyle(
-                        color: Colors.pink,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Icon(Icons.arrow_forward, color: Colors.pink),
-                  ],
-                ),
               ),
             ],
           ),
