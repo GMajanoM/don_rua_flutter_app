@@ -53,8 +53,8 @@ class HomeScreen extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 16),
-                SizedBox(
-                  width: size.width * 0.5,
+                Container(
+                  constraints: BoxConstraints(maxWidth: size.width * 0.55),
                   child: FilledButton(
                     onPressed: () {},
                     child: const Row(

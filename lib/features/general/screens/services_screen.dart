@@ -1,11 +1,19 @@
 import 'package:donrua_app/features/shared/shared.dart';
 import 'package:flutter/material.dart';
 
-class ServicesScreen extends StatelessWidget {
+class ServicesScreen extends StatefulWidget {
   const ServicesScreen({super.key});
 
   @override
+  State<ServicesScreen> createState() => _ServicesScreenState();
+}
+
+class _ServicesScreenState extends State<ServicesScreen>
+    with TickerProviderStateMixin {
+  @override
   Widget build(BuildContext context) {
+    TabController controller = TabController(length: 4, vsync: this);
+
     const drawerIndex = 1;
 
     final size = MediaQuery.of(context).size;
@@ -58,6 +66,132 @@ class ServicesScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: Colors.grey),
+              ),
+              child: Column(
+                children: [
+                  Container(
+                    constraints: const BoxConstraints(maxHeight: 200),
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: SizedBox(
+                            height: 100,
+                            width: 250,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                'assets/img/ave-maria.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: SizedBox(
+                            height: 100,
+                            width: 250,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                'assets/img/ave-maria.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: SizedBox(
+                            height: 100,
+                            width: 250,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.asset(
+                                'assets/img/ave-maria.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const Divider(),
+                  Container(
+                    constraints: BoxConstraints(maxHeight: size.height * 0.35),
+                    child: Column(
+                      children: [
+                        TabBar(
+                          isScrollable: true,
+                          controller: controller,
+                          indicator: BoxDecoration(
+                            border: Border(
+                              bottom: BorderSide(
+                                color: colors.primary,
+                                width: 2,
+                              ),
+                            ),
+                          ),
+                          tabs: const [
+                            Tab(child: Text('Misas')),
+                            Tab(child: Text('Adoraciones')),
+                            Tab(child: Text('Confesiones')),
+                            Tab(child: Text('Contacto')),
+                          ],
+                        ),
+                        SizedBox(
+                          height: size.height * 0.25,
+                          child: TabBarView(
+                            controller: controller,
+                            children: [
+                              Tab(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        'Horarios de misas',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      const SizedBox(height: 16),
+                                      const Text(
+                                        'Cupidatat deserunt id exercitation nisi. Esse tempor nostrud in adipisicing magna nulla deserunt ea Lorem laboris enim elit.',
+                                      ),
+                                      const SizedBox(height: 8),
+                                      FilledButton.icon(
+                                        label: const Text('Agendar'),
+                                        onPressed: () {},
+                                        icon: const Icon(
+                                            Icons.calendar_month_rounded),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const Tab(
+                                child: Text('Adoraciones'),
+                              ),
+                              const Tab(
+                                child: Text('Confesiones'),
+                              ),
+                              const Tab(
+                                child: Text('Contacto'),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
