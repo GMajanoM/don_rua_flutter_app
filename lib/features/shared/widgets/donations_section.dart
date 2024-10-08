@@ -44,8 +44,11 @@ class DonationSection extends StatelessWidget {
               const SizedBox(height: 10),
               ElevatedButton.icon(
                 onPressed: () {},
-                icon: const Icon(Icons.volunteer_activism),
-                label: const Text('Panel de Donaciones'),
+                icon: const Icon(Icons.volunteer_activism, color: Colors.white),
+                label: const Text(
+                  'Panel de Donaciones',
+                  style: TextStyle(color: Colors.white),
+                ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.pink,
                   padding: const EdgeInsets.symmetric(

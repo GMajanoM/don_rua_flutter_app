@@ -115,7 +115,30 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: 10),
                   ModuleNews(size: size),
                   const SizedBox(height: 25),
-                  DonationSection(size: size)
+                  DonationSection(size: size),
+                  const SizedBox(height: 25),
+                  const Text(
+                    'Servicios Parroquiales',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 10),
+                  const ParroquialServicesSection(),
+                  const SizedBox(height: 25),
+                  const Text(
+                    'Obras Sociales',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 10),
+                  const ObrasSocialesSection(),
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Blog Salesiano',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const BlogSalesianoCard(),
                 ],
               ),
             ),
@@ -143,13 +166,13 @@ class ModuleNews extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: const [
           RecentNewsCard(
-              title: 'Helo',
-              description: "Holaaaaaaaaaaaaaaaaaaaaaa",
+              title: 'Titulo de Ejemplo',
+              description: "Descripción de la noticia",
               imageUrl: 'assets/img/church-inside.png',
               date: '25/05/2222'),
           RecentNewsCard(
-              title: 'Helo',
-              description: "Holaaaaaaaaaaaaaaaaaaaaaa",
+              title: 'Titulo de Ejemplo',
+              description: "Descripción de la noticia",
               imageUrl: 'assets/img/church-inside.png',
               date: '25/05/2222'),
         ],
@@ -268,6 +291,164 @@ class ActivityCard extends StatelessWidget {
             style: const TextStyle(
               fontSize: 12,
               color: Colors.grey,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class BlogSalesianoCard extends StatelessWidget {
+  const BlogSalesianoCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(5),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        elevation: 4,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
+              ),
+              child: Image.asset(
+                'assets/img/church-inside.png',
+                width: double.infinity,
+                height: 200,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 8),
+                  Container(
+                    width: 60,
+                    height: 4,
+                    color: Colors.blueAccent,
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Visita el blog y nuestros proyectos culturales y actualizaciones nuevas en nuestra Parroquia.',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti cumque reiciendis, nemo explicabo fuga.',
+                    style: TextStyle(fontSize: 14, color: Colors.grey),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueAccent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: const Text(
+                      'Visitar',
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ObrasSocialesSection extends StatelessWidget {
+  const ObrasSocialesSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GridView.count(
+            crossAxisCount: size.width > 600 ? 1 : 2,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 15,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            children: const [
+              SocialWorkCard(
+                icon: Icons.school,
+                title: 'Escuela Salesiana Domingo Sabio',
+              ),
+              SocialWorkCard(
+                icon: Icons.local_hospital,
+                title: 'Clínica Parroquial María Auxiliadora',
+              ),
+              SocialWorkCard(
+                icon: Icons.restaurant,
+                title: 'Comedor de Ancianos Mamá Margarita',
+              ),
+              SocialWorkCard(
+                icon: Icons.church,
+                title: 'Oratorio Festivo Domingo Sabio',
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ParroquialServicesSection extends StatelessWidget {
+  const ParroquialServicesSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 10),
+          SizedBox(
+            height: 200,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: const [
+                ServicesCard(
+                  imageUrl: 'assets/img/offices.png',
+                  title: 'Misas, Adoraciones Y confesiones',
+                  description:
+                      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam facilis quos suscipit excepturi.',
+                ),
+                ServicesCard(
+                  imageUrl: 'assets/img/offices.png',
+                  title: 'Bautizos y Matrimonios',
+                  description:
+                      'Eaque odio cumque lorem ipsum dolor sit amet consectetur.',
+                ),
+                ServicesCard(
+                  imageUrl: 'assets/img/offices.png',
+                  title: 'Eventos Especiales',
+                  description:
+                      'Explicabo fuga velit, enim eaque et eum nesciunt dignissimos.',
+                ),
+              ],
             ),
           ),
         ],

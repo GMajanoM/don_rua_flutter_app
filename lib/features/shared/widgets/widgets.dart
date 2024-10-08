@@ -5,3 +5,5 @@ export 'big_img.dart';
 export 'card.dart';
 export 'recent_news_card.dart';
 export 'donations_section.dart';
+export 'social_work_card.dart';
+export 'services_card.dart';

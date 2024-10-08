@@ -20,15 +20,16 @@ class RecentNewsCard extends StatelessWidget {
 
     return Container(
       margin: const EdgeInsets.only(right: 8),
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            blurRadius: 5,
-            spreadRadius: 1,
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 6,
+            spreadRadius: 2,
+            blurStyle: BlurStyle.normal,
           ),
         ],
       ),
@@ -39,7 +40,7 @@ class RecentNewsCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
             child: Image.asset(
               imageUrl,
-              width: size.width * 1,
+              width: size.width * 0.80,
               height: size.height * 0.25,
               fit: BoxFit.cover,
             ),
