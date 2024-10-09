@@ -85,13 +85,31 @@ class HomeScreen extends StatelessWidget {
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 8),
-                      CustomCard(
-                          title: 'Información de Importancia',
-                          color: colors.secondary,
-                          status: 'Programado',
-                          information:
-                              'Et incididunt non ut deserunt tempor. In do commodo Lorem eiusmod cupidatat nisi adipisicing est do aliqua labore laboris aliqua. Excepteur cupidatat Lorem deserunt sint. Qui sint et qui quis nisi quis sunt consectetur.',
-                          coversWidth: true),
+                      CustomCardCarousel(
+                        cards: [
+                          {
+                            'title': 'Información de Importancia',
+                            'color': colors.secondary,
+                            'status': 'Programado',
+                            'information':
+                                'Et incididunt non ut deserunt tempor. In do commodo Lorem eiusmod cupidatat nisi adipisicing est do aliqua labore laboris aliqua.',
+                          },
+                          {
+                            'title': 'Actividad Matutina',
+                            'color': colors.primary,
+                            'status': 'Activa',
+                            'information':
+                                'Excepteur cupidatat Lorem deserunt sint. Qui sint et qui quis nisi quis sunt consectetur.',
+                          },
+                          const {
+                            'title': 'Actividad Nocturna',
+                            'color': Colors.purple,
+                            'status': 'Finalizado',
+                            'information':
+                                'Qui sint et qui quis nisi quis sunt consectetur ad non deserunt tempor.',
+                          },
+                        ],
+                      ),
                       const SizedBox(height: 25),
                     ],
                   ),
