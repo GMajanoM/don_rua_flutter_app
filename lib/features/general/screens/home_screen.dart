@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:widget_zoom/widget_zoom.dart';
 
 import '../../shared/shared.dart';
 
@@ -143,6 +144,13 @@ class HomeScreen extends StatelessWidget {
                   const ParroquialServicesSection(),
                   const SizedBox(height: 25),
                   const Text(
+                    'Horarios de Misas',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 10),
+                  const SchedulesSection(),
+                  const SizedBox(height: 25),
+                  const Text(
                     'Obras Sociales',
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
@@ -167,6 +175,109 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
+class SchedulesSection extends StatefulWidget {
+  const SchedulesSection({
+    super.key,
+  });
+
+  @override
+  State<SchedulesSection> createState() => _SchedulesSectionState();
+}
+
+class _SchedulesSectionState extends State<SchedulesSection>
+    with TickerProviderStateMixin {
+  @override
+  Widget build(BuildContext context) {
+    TabController controller = TabController(length: 5, vsync: this);
+
+    final size = MediaQuery.of(context).size;
+
+    return Column(
+      children: [
+        TabBar(
+          isScrollable: true,
+          controller: controller,
+          tabs: const [
+            Tab(child: Text('General')),
+            Tab(child: Text('Lunes a Viernes')),
+            Tab(child: Text('Sábado')),
+            Tab(child: Text('Domingo')),
+            Tab(child: Text('Días Festivos')),
+          ],
+        ),
+        Container(
+          constraints: BoxConstraints(
+              maxWidth: size.width * 0.9, maxHeight: size.height * 0.4),
+          child: TabBarView(
+            controller: controller,
+            children: [
+              Tab(
+                child: WidgetZoom(
+                  heroAnimationTag: 'generalImg',
+                  zoomWidget: Image.asset('assets/img/schedules.webp'),
+                ),
+              ),
+              Tab(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: size.width * 0.3,
+                        height: size.width * 0.3,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50),
+                          image: const DecorationImage(
+                              image: AssetImage('assets/img/padre-dada.webp'),
+                              fit: BoxFit.cover),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      const Text('Encargado de la misa:'),
+                      const Text(
+                        'Padre Mauricio Dada',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      const Text(
+                        'Lunes a Viernes',
+                        style: TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 16),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text('07:00 AM'),
+                          Text('-'),
+                          Text('09:00 AM'),
+                        ],
+                      ),
+                      const Divider(),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text('05:00 PM'),
+                          Text('-'),
+                          Text('06:30 PM'),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+                    ],
+                  ),
+                ),
+              ),
+              const Tab(child: Text('Sábado')),
+              const Tab(child: Text('Domingo')),
+              const Tab(child: Text('Días Festivos')),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+}
+
 class ModuleNews extends StatelessWidget {
   const ModuleNews({
     super.key,
@@ -185,7 +296,8 @@ class ModuleNews extends StatelessWidget {
         children: const [
           RecentNewsCard(
               title: 'Titulo de Ejemplo',
-              description: "Descripción de la noticia",
+              description:
+                  "Magna ipsum commodo mollit proident irure veniam laborum excepteur. Fugiat fugiat irure sunt labore ex elit nulla tempor. Anim exercitation ullamco eu cupidatat magna nisi ea pariatur esse proident. Exercitation quis laborum non anim incididunt est amet elit. Officia elit sint id eu culpa fugiat velit ut cupidatat aliqua est. Ea ex velit commodo minim ullamco tempor duis nostrud pariatur laboris anim excepteur nisi eiusmod.",
               imageUrl: 'assets/img/church-inside.png',
               date: '25/05/2222'),
           RecentNewsCard(

@@ -46,22 +46,28 @@ class RecentNewsCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 15),
-          Text(
-            title,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
+          SizedBox(
+            width: size.width * 0.80,
+            child: Text(
+              title,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
             ),
           ),
           const SizedBox(height: 4),
-          Text(
-            description,
-            style: const TextStyle(
-              fontSize: 14,
-              color: Colors.grey,
+          SizedBox(
+            width: size.width * 0.80,
+            child: Text(
+              description,
+              style: const TextStyle(
+                fontSize: 14,
+                color: Colors.grey,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
-            maxLines: 10,
-            overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 8),
           Row(

@@ -9,10 +9,10 @@ class CustomCardCarousel extends StatefulWidget {
   });
 
   @override
-  _CustomCardCarouselState createState() => _CustomCardCarouselState();
+  CustomCardCarouselState createState() => CustomCardCarouselState();
 }
 
-class _CustomCardCarouselState extends State<CustomCardCarousel> {
+class CustomCardCarouselState extends State<CustomCardCarousel> {
   final PageController _controller = PageController();
   int _currentIndex = 0;
 
